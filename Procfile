@@ -1,1 +1,2 @@
-web: python backend/manage.py runserver 
+
+web:gunicorn BINCOM.wsgi:application --log-file -
