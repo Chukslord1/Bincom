@@ -1,0 +1,215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Election Results Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- App favicon -->
+  <link rel="shortcut icon" href="{% static 'account/assets/images/favicon.ico' %}">
+
+  <!-- App css -->
+  <link href="{% static 'account/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'account/assets/css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'account/assets/css/theme.min.css' %}" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+  <!-- Begin page -->
+  <div id="layout-wrapper">
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="vertical-menu">
+
+      <div data-simplebar class="h-100">
+
+        <!-- LOGO -->
+        <div class="navbar-brand-box">
+          <a href="index.html" class="logo">
+
+          </a>
+        </div>
+
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+          <!-- Left Menu Start -->
+          <ul class="metismenu list-unstyled" id="side-menu">
+            <li class="menu-title">Menu</li>
+
+            <li>
+              <a href="index.html"><i class="feather-home"></i><span>Polling Unit</span></a>
+            </li>
+
+            <li>
+              <a href="tests.html"><i class="fas fa-vial"></i><span>Local Goverment</span></a>
+            </li>
+
+            <li>
+              <a href="results.html"><i class="fas fa-chart-bar"></i><span>Store New Polling Unit Results</span></a>
+            </li>
+
+          </ul>
+        </div>
+        <!-- Sidebar -->
+      </div>
+    </div>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+
+      <header id="page-topbar">
+        <div class="navbar-header">
+          <div class="d-flex align-items-center">
+            <button type="button" class="btn btn-sm mr-2 d-lg-none header-item" id="vertical-menu-btn">
+              <i class="fa fa-fw fa-bars"></i>
+            </button>
+
+            <div class="header-breadcumb">
+
+              <h2 class="header-title">Results fo Each Polling Unit</h2>
+            </div>
+          </div>
+
+        </div>
+      </header>
+
+      <div class="page-content">
+        <div class="container-fluid">
+
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Polling Units</h4>
+                  <p class="card-subtitle mb-4">
+                    This shows all the results from each Polling Unit
+                  </p>
+
+                  <div class="table-responsive">
+                    <table class="table table-centered table-striped table-nowrap">
+                      <thead>
+                        <tr>
+                          <th>Total Result</th>
+                          <th>Score</th>
+
+
+                        </tr>
+                      </thead>
+                      <form method="POST">
+
+                      <tbody>
+
+                        <tr>
+                        <td>
+                          Total Score Of All Polling Units From Any Local Government
+                        </td>
+                        <td>
+                          {{history}}
+                        </td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+                </form>
+                <!-- end card body-->
+              </div>
+              <!-- end card -->
+            </div>
+          </div>
+          <!-- end row-->
+
+        </div>
+        <div class="col-lg-6">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Hospital Details</h4>
+                  <p class="card-subtitle mb-4">Change settings about the hospital</p>
+
+                  <form method="POST">
+                      {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleInputText1">result_id</label>
+                      <input type="text" class="form-control" value="{{announced_pu_results.result_id}}" id="exampleInputText1" placeholder="result_id" name="result_id">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputText2">polling_unit_uniqueid</label>
+                      <input type="text" class="form-control" value="{{announced_pu_results.polling_unit_uniqueid}}" id="exampleInputText2" placeholder="polling_unit_uniqueid" name="polling_unit_uniqueid">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputText3">party_abbreviation</label>
+                      <input type="text" class="form-control" value="{{announced_pu_results.party_abbreviation}}" id="exampleInputText3" placeholder="party_abbreviation" name="party_abbreviation">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputText3">party_score</label>
+                      <input type="text" class="form-control" value="{{announced_pu_results.party_score}}" id="exampleInputText3" placeholder="party_score" name="party_score">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputText3">entered_by_user</label>
+                      <input type="text" class="form-control" value="{{announced_pu_results.entered_by_user}}" id="exampleInputText3" placeholder="entered_by_user" name="entered_by_user">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputText3">date_entered</label>
+                      <input type="text" class="form-control" value="{{announced_pu_results.date_entered}}" id="exampleInputText3" placeholder="date_entered" name="date_entered">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputText3">user_ip_address</label>
+                      <input type="text" class="form-control" value="{{announced_pu_results.user_ip_address}}" id="exampleInputText3" placeholder="user_ip_address" name="user_ip_address">
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Details</button>
+                  </form>
+
+                </div>
+                <!-- end card-body-->
+              </div>
+            </div>
+        <!-- container-fluid -->
+      </div>
+
+      <!-- End Page-content -->
+
+      <footer class="footer">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              Copyright © 2020 Bincom
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+    <!-- end main content-->
+
+  </div>
+  <!-- END layout-wrapper -->
+
+  <!-- Overlay-->
+  <div class="menu-overlay"></div>
+
+
+  <!-- jQuery  -->
+  <script src="{% static 'account/assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'account/assets/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'account/assets/js/metismenu.min.js' %}"></script>
+  <script src="{% static 'account/assets/js/waves.js' %}"></script>
+  <script src="{% static 'account/assets/js/simplebar.min.js' %}"></script>
+
+  <!-- App js -->
+  <script src="{% static 'account/assets/js/theme.js' %}"></script>
+
+</body>
+
+</html>
