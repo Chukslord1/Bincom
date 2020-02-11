@@ -5,4 +5,4 @@ pytz==2017.2
 
 sqlparse==0.3.0
 
-gunicorn==20.0.4
+gunicorn==40.8.0
