@@ -1,1 +1,1 @@
-web: gunicorn BINCOM.wsgi --log-file
+web: gunicorn BINCOM.wsgi --log-file -
